@@ -1,15 +1,10 @@
-# 📘 SystemC and TLM 2.0 Simulation Projects
+# System C 
 
-This repository contains basic hardware modeling projects implemented using **SystemC** and **TLM 2.0 (Transaction-Level Modeling)**. Examples include:
-
-- ✅ Half Adder (HA)
-- ✅ Full Adder (FA)
-- ✅ Counters
-- ✅ Simple Arithmetic Units
+This repository contains basic hardware modeling projects implemented using **SystemC** and **TLM 2.0 (Transaction-Level Modeling)**. 
 
 ---
 
-## 💡 What is SystemC?
+## What is SystemC?
 
 **SystemC** is a C++ class library and simulation kernel used for modeling and simulating hardware systems at various abstraction levels. It is widely used in:
 
@@ -31,7 +26,7 @@ Follow the steps below to install **SystemC 2.3.3** on a Linux-based system:
 ```bash
 sudo apt update
 sudo apt install -y build-essential git cmake
-
+```
 2. Download and extract SystemC
 
 mkdir -p $HOME/systemc
