@@ -11,7 +11,9 @@ This repository contains basic hardware modeling projects implemented using **Sy
 - Electronic System Level (ESL) design
 - Functional and behavioral modeling
 - Hardware/software co-design
-
+- Supports concurrent process modeling like Verilog/VHDL.
+- Can simulate timing and concurrency.
+- Allows modular and hierarchical design.
 
 SystemC allows designers to write and simulate hardware designs using standard C++ syntax, making it a powerful tool for pre-silicon verification and architectural modeling.
 
@@ -22,29 +24,107 @@ SystemC allows designers to write and simulate hardware designs using standard C
 ### Module (sc_module)
 Basic building block representing hardware components or systems.
 
+```
+SC_MODULE (Modname) {
+  SC_CTOR (Modname) {
+     //Declare Process
+  }
+};
+```
+### Constructor (SC_CTOR) 
+  - Initializes the module
+  - Registers the process (SC_METHOD, SC_THREAD, SC_CTHREAD)
+  - Build ports to signals
+  - Called once at the beginning of the simulation.
+
+### Destructor (~ModuleName())
+  - Optional
+  - Cleans up resources (like file handles or dynamic memory)
+  - Called after the simulation ends or the object is detected.
+
+```
+SC_MODULE(Modname) {  
+ SC_CTOR(Modname) {  //Constructor
+  SC_METHOD(process);
+  sensitive << clk.pos();
+  cout << " Constructor is called. \n" << endl;
+}
+
+~Modname() { // Destructor
+  cout << "Destructor is called. \n" << endl;
+}
+
+void process () {
+  //Process logic
+ }
+};
+```
+
 ### Processes
 Functions that define the behavior of modules. Three types:
 
-**SC_METHOD: Runs instantly, no internal wait; sensitive to signals/events.**
+**SC_METHOD:**  
+  - Runs instantly.
+  - No internal wait or zero delay
+  - Sensitive to signals/events.
 
-**SC_THREAD: Can include waits and pauses; models sequential behavior.**
+**SC_THREAD:**
+  - Can include wait() statement
+  - Models sequential behavior.
+  - Supports delays.
 
-**SC_CTHREAD: Clocked thread process, triggered on clock edges.**
+**SC_CTHREAD:**
+  - Clocked thread process
+  - Triggered on clock edges.
 
 ### Ports and Interfaces
-Used for communication between modules; define inputs and outputs.
+Used for communication between modules; defines inputs and outputs.
+**sc_in<T> -> Input port**
+**sc_out<T> -> Output port**
+**sc_signal<T> -> Signal for communication**
+**sc_clock -> Clock signal**
 
 ### Channels
-Communication mechanisms between modules (e.g., signals, FIFOs).
+ - Communication mechanisms between modules (e.g., signals, FIFOs).
 
 ### Events and Sensitivity
-Processes can be triggered by changes in signals or explicit events.
+  - Processes can be triggered by changes in signals or explicit events.
+  - SystemC uses simulation time to model hardware behavior.
+
+**sc_start() -> Starts the simulation.**
+**wait() -> Used in threads to suspend or resume.**
+**sc_time() -> Defines specific time units ( eg," sc_time (10, SC_NS) ).**
+**SC_ZERO_TIME -> Zero time constant.**
 
 ### Simulation Kernel
 Manages execution, scheduling processes based on events and time.
 
-### Time and Timing
-Supports simulation time with classes like sc_time, enabling timed delays and synchronization.
+### Hierarchy
+  - Modules can be instantiated under different modules to create a hierarchical system design.
+
+### Tracing and Debugging
+  - Use " sc_trace () " to record signal values during simulation.
+```
+sc_trace_file* tf = sc_create_vcd_trace_file ("wave");
+sc_trace (tf, signal_name. "signal_label");
+sc_close_vcd_trace_file(tf);
+```
+
+### DataTypes
+
+| Type        |                            Description         |
+|**sc_int<N>**|  Signed Integer with "n" bits.                 |
+|**sc_uint<N>**  |  Unsigned Integer with "n" bits.               |
+|**sc_bigint<N>** |  Larger Signed Integer with "n" bits.          |
+|**sc_logic**     |  Supports 4-valued logic: 0, 1, X, Z .         |
+|**sc_fixed**     |  Fixed point numbers.                          |
+
+
+
+
+
+
+
 
 ## ⚙️ How to Install SystemC (Locally)
 
