@@ -91,10 +91,13 @@ Used for communication between modules; defines inputs and outputs.
   - Processes can be triggered by changes in signals or explicit events.
   - SystemC uses simulation time to model hardware behavior.
 
-**sc_start() -> Starts the simulation.**
-**wait() -> Used in threads to suspend or resume.**
-**sc_time() -> Defines specific time units ( eg," sc_time (10, SC_NS) ).**
-**SC_ZERO_TIME -> Zero time constant.**
+**sc_start()** -> Starts the simulation.
+
+**wait()** -> Used in threads to suspend or resume.
+
+**sc_time()** -> Defines specific time units ( eg," sc_time (10, SC_NS) ).
+
+**SC_ZERO_TIME** -> Zero time constant.
 
 ### Simulation Kernel
   - Manages execution and scheduling processes based on events and time.
