@@ -1,6 +1,6 @@
 # System C 
 
-This repository contains basic hardware modeling projects implemented using **SystemC** and **TLM 2.0 (Transaction-Level Modeling)**. 
+This repository contains basic hardware modeling projects implemented using **SystemC**. 
 
 ---
 
