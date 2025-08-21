@@ -61,7 +61,7 @@ void process () {
 ```
 
 ### Processes
-Functions that define the behavior of modules. Three types:
+ - Functions that define the behavior of modules. Three types of processes are available in SystemC:
 
 **SC_METHOD:**  
   - Runs instantly.
@@ -97,10 +97,20 @@ Used for communication between modules; defines inputs and outputs.
 **SC_ZERO_TIME -> Zero time constant.**
 
 ### Simulation Kernel
-Manages execution, scheduling processes based on events and time.
+  - Manages execution and scheduling processes based on events and time.
 
-### Hierarchy
+### Hierarchical Design
   - Modules can be instantiated under different modules to create a hierarchical system design.
+
+```
+SC_MODULE (TOP) {
+  submodule sub1;
+  SC_CTOR (TOP): sub1 ("sub1") {
+    sub1.in(signal_in);
+    sub1.out(signal_out);
+ } 
+};
+```
 
 ### Tracing and Debugging
   - Use " sc_trace () " to record signal values during simulation.
@@ -112,19 +122,35 @@ sc_close_vcd_trace_file(tf);
 
 ### DataTypes
 
-| Type        |                            Description         |
-|**sc_int<N>**|  Signed Integer with "n" bits.                 |
-|**sc_uint<N>**  |  Unsigned Integer with "n" bits.               |
-|**sc_bigint<N>** |  Larger Signed Integer with "n" bits.          |
-|**sc_logic**     |  Supports 4-valued logic: 0, 1, X, Z .         |
-|**sc_fixed**     |  Fixed point numbers.                          |
+**1. sc_int<N>**: Signed Integer with "n" bits.                 
+**2. sc_uint<N>**: Unsigned Integer with "n" bits.               
+**3. sc_bigint<N>**:  Larger Signed Integer with "n" bits.          
+**4. sc_logic**:  Supports 4-valued logic: 0, 1, X, Z.         
+**5. sc_fixed**:  Fixed-point numbers.                          
 
+### sc_main () Function
+ - The main function in SystemC.
 
+```
+int sc_main(int argc, char* argv[]) {
+   sc_start(10, SC_NS);
+   return 0;
+}
+```
+### Testbench
+```
+int sc_main (int argc, char* argv[]) {
+  sc_signal<bool> a,b,y;
+  AND and1 ("and1");
+  and1.a(a);
+  and1.b(b);
+  and1.y(y);
 
-
-
-
-
+  a = 1, b = 0;
+  sc_start(1, SC_NS);
+  cout << "AND: " <<y.read() <<endl;
+  return 0;
+}
 
 ## ⚙️ How to Install SystemC (Locally)
 
