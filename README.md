@@ -100,10 +100,10 @@ Replace folder/ with the name of the subdirectory (e.g., ha, fa, counter).
 
 If you don't want to install SystemC locally, you can:
 
-#### Use EDA Playground.
-#### Select SystemC (IEEE 1666) as the simulator.
-#### Copy-paste your code into the editor.
-#### Run simulations online with waveform support.
+#### Use EDA Playground :
+   Select SystemC (IEEE 1666) as the simulator.
+   Copy-paste your code into the editor.
+   Run simulations online with waveform support.
 #### ~ Note: EDA Playground supports small-scale SystemC projects only.
 
 ## Feel Free to Collaborate
