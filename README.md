@@ -79,9 +79,13 @@ void process () {
 
 ### Ports and Interfaces
 Used for communication between modules; defines inputs and outputs.
+
 **sc_in<T>** -> Input port.
+
 **sc_out<T>** -> Output port.
+
 **sc_signal<T>** -> Signal for communication.
+
 **sc_clock** -> Clock signal.
 
 ### Channels
