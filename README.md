@@ -25,11 +25,11 @@ Basic building block representing hardware components or systems.
 ### Processes
 Functions that define the behavior of modules. Three types:
 
-### SC_METHOD: Runs instantly, no internal wait; sensitive to signals/events.
+**SC_METHOD: Runs instantly, no internal wait; sensitive to signals/events.**
 
-### SC_THREAD: Can include waits and pauses; models sequential behavior.
+**SC_THREAD: Can include waits and pauses; models sequential behavior.**
 
-### SC_CTHREAD: Clocked thread process, triggered on clock edges.
+**SC_CTHREAD: Clocked thread process, triggered on clock edges.**
 
 ### Ports and Interfaces
 Used for communication between modules; define inputs and outputs.
